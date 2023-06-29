@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    <section>
+    <h1 align="center">All Events</h1>
+    <h4 align="center">{{ events_count }} events to help make our city a better place! </h4>
+<br>
+    <div class="form-group" align="center">
+        <form class="form-group" style="margin-top: 10px; margin-left: 25px; margin-bottom: 10px" method="get">
+            {{ all_events_filter.form }}
+            <button type="submit" class="btn btn-outline-primary" style="margin-bottom:15px">Search by filters</button>
+        </form>
+    </div>
+    <br>
+
+{#    <div  class="d-flex flex-row bd-highlight mb-3" >#}
+    <div class="d-flex flex-row bd-highlight mb-3; container-fluid; justify-content-center">
+        {% for event in events %}
+            <div class="flex-shrink-0 card" style="background-image: url('https://i.ibb.co/Y2C3bFb/Capture.png'); background-size: cover;width: 250px; margin-left: 30px; margin-right: 20px; border-width: 20px" >
+            <img src="{{ event.image.url }}" class="rounded-circle" alt="event_image" width="100%" height="90vh" style= "object-fit: scale-down; padding-top: 10px">
+
+            <a style="text-decoration: none" href="{% url 'event-details' event.id %}">
+
+            <h5 class="card-title" style="color: navajowhite; margin-top: 5px; margin-bottom: 15px; padding: 5px" align="center"> {{ event.title }}</h5>
+                <p class="card-text" style="color: navajowhite; padding-left: 10px">{{ event.participants.all.count }} registered</p>
+                <p class="card-text" style="color: navajowhite; padding-left: 10px; padding-bottom: 10px">Start Date: {{ event.start_date|date }}</p>
+{#                <p class="card-text" style="padding-left: 10px; padding-bottom: 10px">End Date: {{ event.end_date }}</p>#}
+            </a>
+{#            <p class="card-text" style="padding-left: 10px;"> <a href="{{ event.location }}" target="_blank">Location</a></p>#}
+            </div>
+        {% endfor %}
+    </div>
+
+    </section>
+
+{#<div>#}
+{#        {% for page in pages %}#}
+{#           <button class="btn btn-outline-primary" style="margin-left: 25px"><a href="?page{{ page }}">{{ page }}</a></button>#}
+{#        {% endfor %}#}
+{#    </div>#}
+
+  {% if events.has_other_pages %}
+
+  <ul style="margin-left: 700px; margin-top: 50px" class="pagination">
+    {% if events.has_previous %}
+        <li> <button class="btn"><a href="?page={{ events.previous_page_number }}">&laquo;</a></button></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+
+    {% for i in events.paginator.page_range %}
+      {% if events.number == i %}
+        <li class="active"><span>{{ i }}</span></li>
+      {% else %}
+          <li><button class="btn"><a href="?page={{ i }}">{{ i }}</a></button></li>
+      {% endif %}
+    {% endfor %}
+    {% if events.has_next %}
+      <li><button class="btn"><a href="?page={{ events.next_page_number }}">&raquo;</a></button></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+
+{% endif %}
+{% endblock content %}

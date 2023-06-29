@@ -1,0 +1,110 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+    {% if page == 'register' %}
+        <div>
+            <h4 align="center">Create an Account</h4>
+
+             <div class="container">
+        <div class="row my-5">
+            <div class="col-md-12">
+            <form method="POST" action="{% url 'register-page' %}" enctype="multipart/form-data" class="form">
+                <div >
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+
+{#                    <div>#}
+{#                        <label>{{field.label}}</label>#}
+{#                        {{field}}#}
+{#                        <div>#}
+{#                            {% for error in field.errors %}#}
+{#                            <p class="error">{{error}}</p>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+                    </div>
+{#                    {% endfor %}#}
+
+                    <input type="submit" class="btn btn-primary" value="Register"/>
+            </form>
+            </div>
+
+            <p>Already have an account? <a href="{% url 'login-page' %}">Login</a></p>
+        </div>
+
+        {% else %}
+
+        <div>
+{#            <p style="color: darksalmon" align="center">Thank you for making the change!</p>#}
+            <div class="container" align="center">
+        <div class="row my-5">
+            <div class="col-md-12">
+            <form method="POST" action="{% url 'login-page' %}" class="form">
+                {% csrf_token %}
+
+
+
+                <!-- <div>
+                    <label>User:</label>
+                    <input type="text" name="username"/>
+                </div> -->
+
+                <div class="mb-3 mt-3">
+                    <label for="email">Email</label>
+                    <label for="id_email"></label><input id="id_email" type="email" name="email"/>
+                </div>
+
+                <div>
+                    <label for="pwd" class="form-label" style="margin-left: 110px">Password</label>
+                    <label for="id_password1"></label><input id="id_password1" type="password" name="password"/>
+                    <input type="checkbox"
+           onclick="Toggle()">
+    <strong>Show Password</strong>
+
+    <script>
+        // Change the type of input to password or text
+        function Toggle() {
+            var temp = document.getElementById("id_password1");
+            if (temp.type === "password") {
+                temp.type = "text";
+            }
+            else {
+                temp.type = "password";
+            }
+        }
+    </script>
+                </div>
+                <div class="form-check mb-3">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox" name="remember"> Remember me
+    </label>
+  </div>
+
+
+                <div>
+                    <input type="submit" class="btn btn-primary" value="Login"/>
+                </div>
+ <br>
+                <p>Forgot your password? <a href="{% url 'reset_password' %}"> Reset password</a></p>
+                <p>Don't have an account? <a href="{% url 'register-page' %}">Register</a></p>
+            </form>
+        </div>
+
+
+    {% endif %}
+    </div>
+
+    <div
+  class="bg-image d-flex justify-content-center align-items-center rounded"
+  style="
+    background-image: url('https://i.ibb.co/FgR1zmW/output-onlinepngtools-5.png');
+    height: 30vh; margin-top: 100px; margin-left: 25px; margin-right: 25px;
+  "
+>
+    <img src="{% static 'images/logo-opaque.png' %}" class="rounded-circle" align="right" alt="logo" width="300" height="200">
+
+</div>
+
+{% endblock content %}

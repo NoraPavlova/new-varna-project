@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{#    <h4 style="color:darksalmon; margin-left:25px"> {{ user.username }}'s account </h4>#}
+ <div class="flex-shrink-0 card" style= "background-image: url('https://i.ibb.co/jJgnKZW/plant-card-2.jpg'); background-size: cover; width: 250px; margin-left: 30px; margin-right: 20px; border-width: 15px" >
+{#  <div class="flex-shrink-0 card; bg-image hover-overlay" style="width: 250px; margin-left: 30px; margin-right: 20px; border-color: white" >#}
+          <img src="{{ user.avatar.url }}" class="rounded-circle" width="100%" height="180vh" style= "object-fit: scale-down; padding:10px" alt="avatar"/>
+ </div>
+    <br><br>
+<div class="flex-shrink-0 card" style= "background-image: url('https://i.ibb.co/jJgnKZW/plant-card-2.jpg'); background-size: cover; width: 250px; margin-left: 30px; margin-right: 20px; border-width: 15px" >
+     <button class="btn" style="font-size: medium; margin:10px"><a class="card-text" style="color: navajowhite; text-decoration: none" href="{% url 'edit-account' %}">Edit Account</a></button>
+     <button class="btn" style="font-size: medium; margin:10px"><a class="card-text" style="color: navajowhite; text-decoration: none" href="{% url 'change-password' %}">Change password</a></button>
+        <button class="btn" style="font-size: medium; margin:10px"><a class="card-text" style="color: navajowhite; text-decoration: none" href="{% url 'reset_password' %}">Reset password</a></button>
+     <button class="btn" style="font-size: medium; margin:10px"><a class="card-text" style="color: navajowhite; text-decoration: none" href="{% url 'user-profile-page' user.id %}">View Profile</a></button>
+     <button class="btn" style="font-size: medium; margin:10px"><a class="card-text" style="color: navajowhite; text-decoration: none" href="{% url 'delete-account' %}">Delete account</a></button>
+</div>
+
+
+
+
+
+{% endblock content %}

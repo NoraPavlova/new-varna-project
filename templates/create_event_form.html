@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<h4 align="center"> Create event for {{ cause.title }} </h4>
+     <div class="container">
+        <div class="row my-5">
+            <div class="col-md-12">
+    <form method="POST" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+{#        {{ form.as_p }}#}
+        <input type="submit" class="btn btn-primary" value="Update Event"/>
+    </form>
+</div>
+        </div>
+    </div>
+
+{% endblock content %}

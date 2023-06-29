@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<h3 align="center">
+Edit Your Account
+</h3>
+ <div class="container">
+        <div class="row my-5">
+            <div class="col-md-12">
+<form method="POST" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+     {% bootstrap_form form %}
+{#    {% for field in form %}#}
+{#        <div>#}
+{#            <label>#}
+{#                {{ field.label }}#}
+{#            </label>#}
+{#        {{ field }}#}
+{#        </div>#}
+{#    {% endfor %}#}
+<div>
+    <input type="submit" class="btn btn-primary" value="Update Account" />
+</div>
+</form>
+</div>
+
+{% endblock content %}

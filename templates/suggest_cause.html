@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h4 align="center" xmlns="http://www.w3.org/1999/html">If you wish to suggest a cause <a style="text-decoration: none" href="mailto:makethedifference.varna@gmail.com">Email Me</a></h4>
+    {% else %}
+        <p align="center" class="lead"  style="padding-left: 25px">To Suggest a Cause, please  <a style="text-decoration: none" href="{% url 'login-page' %}"> Login </a> </p>
+    {% endif %}
+<br>
+    <h6 align="center" style="padding-left: 25px; font-family: cursive">Please, get familiar with the rules below:</h6>
+
+<div align="center" style="margin-right: 100px; margin-left: 100px" class="lead">
+
+    In your email, include a detailed description of the cause, including your ideas for improvement of the public space.
+    Email can be written both in English or Bulgarian.
+
+    Once we receive your suggestion, it will be reviewed, and we’ll get back to you.
+    If it meets the requirements, stated below, the cause will be posted on the website.
+    <p>After that moment, registered users can follow it and / or create events to support it.</p>
+
+    <p>Location is limited to Varna and Varna region.</p>
+
+    <p>Allowed initiatives: Cleaning public spaces and nature areas such as beaches and gardens; small repair jobs such as repairing broken benches, stairs or cleaning graffiti (the ugly kind) off buildings;
+        improving the city environment and public spaces.
+    </p>
+
+    <p>Forbidden initiatives: All types of collecting money or donations, cooking and distributing food to people or animals, all types of personal causes or funding. Suggestions of such kind won’t be approved.</p>
+
+</div>
+
+    <p  align="center" style="font-family: cursive"> Thank you!</p>
+    <div
+  class="bg-image d-flex justify-content-center align-items-center rounded"
+  style="
+    background-image: url('https://i.ibb.co/FgR1zmW/output-onlinepngtools-5.png');
+    height: 30vh; margin-top: 100px; margin-left: 25px; margin-right: 25px;
+  "
+>
+    <img src="{% static 'images/logo-opaque.png' %}" class="rounded-circle" align="right" alt="logo" width="300" height="200">
+
+</div>
+{% endblock %}

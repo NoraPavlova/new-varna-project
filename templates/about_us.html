@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<center><img  src="{% static 'images/aboutme.jpg' %}" class="rounded-circle" alt="creator" width="200"></center>
+
+    <br>
+    <h3 align="center">Our Mission</h3>
+
+    <p class="lead" align="center">
+    Hi, my name is Nora and I believe that together we can make our city a better place.
+    </p>
+    <div
+  class="bg-image d-flex justify-content-center align-items-center rounded"
+  style="
+    background-image: url('https://i.ibb.co/FgR1zmW/output-onlinepngtools-5.png');
+    height: 30vh; margin-top: 100px; margin-left: 25px; margin-right: 25px;
+  "
+>
+    <img src="{% static 'images/logo-opaque.png' %}" class="rounded-circle" align="right" alt="logo" width="300" height="200">
+
+</div>
+{% endblock content %}

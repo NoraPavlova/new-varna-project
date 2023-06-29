@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <form method="POST">
+{% csrf_token %}
+        <button class="btn-sm btn-outline-primary" style="margin-left: 25px"> <a style="text-decoration: none" href="{% url 'event-details' event.id %}">Go back</a></button>
+<input class="rounded" style="background-color: darkolivegreen; color: antiquewhite; padding: 3px;"type="submit" value="Confirm"/>
+</form>
+{% endblock content %}

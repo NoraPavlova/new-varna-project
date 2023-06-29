@@ -1,0 +1,93 @@
+{% extends 'main.html' %}
+{% load social_share %}
+{% block content %}
+
+<div align="center" class="card-deck">
+  <div align="center" class="card; rounded" style="background-image: url('https://i.ibb.co/jJgnKZW/plant-card-2.jpg');background-size: cover; width: 650px; margin-left: 30px; margin-right: 20px; border-color: darkslateblue">
+<div class="card-body">
+    <h3 align="center" style="color: navajowhite; padding: 10px">
+{#    <img src="{{ event.image.url }}" alt="event_image" width="150">#}
+        {{ event.title }}
+    </h3>
+{% for tag in event_tags %}
+    <button class=" btn btn-group-sm" style="background-color: darkslategrey; color: navajowhite; padding: 0.5px; margin: 5px ">{{ tag.caption }}</button>
+            {% endfor %}
+    <p class="lead" style="color: floralwhite; margin: 10px">{{ event.description }}</p>
+    {% if not creator %}
+        <div style="margin-bottom: 20px"><p style="color: floralwhite; margin: 10px">Created by:</p><a style="color: navajowhite; text-decoration: none" href="{% url 'user-profile-page' user.id %}">{{ event.creator.name }}</a></div>
+
+{% else %}
+        <p>.</p>
+{% endif %}
+    <button class="btn btn-sm" style="background-color: darkslategrey; padding-left: 15px; padding-right: 15px; margin: 5px "><a  style="color: floralwhite; text-decoration: none" href="{{ event.location }}" target="_blank">Location &#127758;</a></button>
+{% if user.is_authenticated %}
+{% if registered %}
+        <p style="color: floralwhite; margin: 10px">You are already registered for this event. </p>
+        {% else %}
+    <button class=" btn btn-group-sm" style="background-color: darkslategrey; color: navajowhite; padding: 3px; margin: 5px "><a style="color: floralwhite; text-decoration: none; margin: 10px" href="{% url 'register-event-conf' event.id %}">Register for this event</a></button>
+        {% endif %}
+{% else %}
+<p style="color: navajowhite; margin: 10px">To Register for this Event, please <a href="{% url 'login-page' %}"> Login </a> </p>
+{% endif %}
+
+<br>
+
+        <form action="{% url 'like-event' event.id %}" method="POST">
+    {% csrf_token %}
+            {% if user.is_authenticated %}
+    {% if liked %}
+     <button class="btn btn-sm" style="background-color: darkslategrey; color: floralwhite; padding-left: 15px; padding-right: 15px; margin: 5px" type="submit" name="event_like_id" value="{{ event.id }}">
+        Unlike &#128148; </button>
+    {% else %}
+    <button class="btn btn-sm" style="background-color: darkslategrey; color: floralwhite; padding-left: 15px; padding-right: 15px; margin: 5px" type="submit" name="event_like_id" value="{{ event.id }}">
+        Like &#x1F49C; </button>
+    {% endif %}
+{% else %}
+<small style="color:floralwhite;">You need to be logged in to like this event.</small>
+{% endif %}
+    <h8 style="color: floralwhite"> {{ total_event_likes }} likes </h8>
+    </form>
+<button class="btn btn-sm" style="background-color: darkslategrey; padding-left: 15px; padding-right: 15px; margin: 5px"> <a style="color: floralwhite; text-decoration: none; font-size: large" href="{% post_to_facebook object_or_url %}"></a></button>
+ </div>
+  </div>
+<br>
+
+ <div>
+ <h3 align="center" style="color: darkslategrey">{{ event.participants.count }} Event Participants</h3>
+ <div class="d-flex flex-row bd-highlight mb-3">
+        {% for user in event.participants.all %}
+            <div class="flex-shrink-0 card" style="background-image: url('https://i.ibb.co/jJgnKZW/plant-card-2.jpg');background-size: cover; width: 200px; margin-left: 30px; margin-right: 15px; border-color: darkslategrey" >
+            <a href="{% url 'user-profile-page' user.id%}">
+                <div>
+                    <div>
+                        <img src="{{user.avatar.url}}" class="rounded-circle" alt="user_avatar" width="100%" height="90vh" style= "object-fit: scale-down; padding-top: 10px"/>
+                        <a style="text-decoration: none; color: floralwhite; padding-left: 50px" href="{% url 'user-profile-page' user.id %}">{{ user.name }}</a>
+                    </div>
+                </div>
+            </a>
+            </div>
+        {% endfor %}
+
+    </div>
+ <br><br/>
+                    <h6 align="center" style="text-decoration: underline">Recent comments...</h6>
+
+            {% for comment in event.event_comments.all %}
+                <div align="center" style="font-family: Courier,fantasy">
+                    <h8>{{ comment.name }}</h8>: <h9>{{ comment.text }}</h9>
+                <br>
+                <h9>{{ comment.created_on }}</h9>
+            {% endfor %}
+                </div>
+<br>
+ <div>
+     <button class="btn btn" style="margin-left:50px; background-color: darkslategrey"><a style="color: antiquewhite; text-decoration: none" href="{% url 'post-comment' event.id %}">Add Your Comment</a></button></div>
+
+
+<hr style="margin: 25px">
+
+    <div align="center"> Want to ask a question about this event?
+        You can <a href="mailto:{{ event.creator.email }};
+                            makethedifference.varna@gmail.com">email us directly.</a></div>
+
+{% endblock content %}

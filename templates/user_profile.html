@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+       <div class="flex-shrink-0 card justify-content-center" style="background-image: url('https://i.ibb.co/Y2C3bFb/Capture.png'); background-size: cover;width: 250px; margin-left: 30px; margin-right: 20px; border-width: 20px" >
+                <h3 align="center" style="color: navajowhite">
+{{ user.name }}
+</h3>
+    <img src="{{ user.avatar.url }}" class="rounded" alt="avatar" width="100%" height="200vh" style= "object-fit: scale-down; padding:10px"/>
+       <p class="lead" style="color: navajowhite">{{ user.bio }}</p>
+       </div>
+    <br><br>
+    <div class="flex-shrink-0 card justify-content-center" style="background-image: url('https://i.ibb.co/Y2C3bFb/Capture.png'); background-size: cover;width: 250px; margin-left: 30px; margin-right: 20px; border-width: 20px" >
+            <div class="text-body" align="center">
+
+                        {% if user.website %}
+            <h6 style="color:navajowhite;"> Let's get connected!</h6>
+                            <button class="btn btn-outline-primary" style="font-size: medium; margin:10px"><a class="card-text" style="text-decoration: none; color: navajowhite" href="{{ user.website }}" target="_blank">My Social Media</a></button>
+    {% endif %}
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock content %}

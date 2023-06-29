@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+    <form method="POST" class="form">
+    {% csrf_token %}
+    <fieldset>
+        <legend style="margin-left: 25px">Delete Your Account</legend>
+            <p class="lead" style="margin-left: 25px">Are you sure you want to delete your account?</p>
+            {{ form }}
+    </fieldset>
+    <div>
+        <button type="submit" class="btn btn-danger" style="margin-left: 25px">Delete Account</button>
+
+    </div>
+</form>
+    <br>
+  <a href="{% url 'user-account' %}"><button class="btn btn-outline-primary" style="margin-left: 25px">No. Go Back!</button></a>
+{% endblock content %}

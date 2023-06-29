@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    <h3 class="card-title" align="center">My Causes</h3>
+<center><div class="card" style="width: 600px">
+  <div class="card-body rounded" style="background-image: url('https://i.ibb.co/GsnRQw4/green-opaq.png'); background-size: cover">
+
+  <ul>
+    {% for cause in user.causes.all %}
+        <div>
+        <a style="text-decoration: none; color: navajowhite; font-size: large" href="{% url 'cause' cause.id %}"> {{ cause.title }}</a>
+        </div>
+        {% empty %}
+            <p style="font-size: large">You haven't followed any causes yet.</p>
+    {% endfor %}
+  </ul>
+    </div>
+
+</div></center>
+
+    <br>
+
+<h3 class="card-title" align="center" >My Events</h3>
+<center><div class="card" style="width: 600px">
+ <div class="card-body rounded" style="background-image: url('https://i.ibb.co/6JRs7kZ/blue-opaq.png'); background-size: cover">
+
+    {% for event in user.events.all %}
+        <ul>
+        {% if user == event.creator %}
+        <a style="text-decoration: none; color: navajowhite; font-size: large" href="{% url 'update-event' event.id %}">Update Event |&#127800;| </a>
+        {% endif %}
+
+        <a  style="text-decoration: none; color: navajowhite; font-size: large" href="{% url 'event-details' event.id %}">{{ event.title }}</a>
+    {% empty %}
+        <p>You have not created any events yet.</p>
+    {% endfor %}
+</ul>
+    </div>
+</div> </center>
+    <div
+  class="bg-image d-flex justify-content-center align-items-center rounded"
+  style="
+    background-image: url('https://i.ibb.co/FgR1zmW/output-onlinepngtools-5.png');
+    height: 30vh; margin-top: 100px; margin-left: 25px; margin-right: 25px;
+  "
+>
+    <img src="{% static 'images/logo-opaque.png' %}" class="rounded-circle" align="right" alt="logo" width="300" height="200">
+
+</div>
+{% endblock %}

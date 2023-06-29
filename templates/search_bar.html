@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    {% if searched %}
+    <h1> You searched for...{{ searched }}</h1>
+        {% for cause in causes %}
+            <a href="{% url 'cause' cause.id %}">
+        <center>{{ cause }}</center></a>
+        {% endfor %}
+        {% for event in events %}
+            <a href="{% url 'event-details' event.id %}">
+            <center> {{ event }} </center></a>
+            {% if not searched %}
+                <h2>No results for this search...</h2>
+            {% endif %}
+        {% endfor %}
+                {% else %}
+      <h1>Please enter a search word</h1>
+        {% endif %}
+    <br><br>
+{% endblock content %}

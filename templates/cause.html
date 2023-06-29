@@ -1,0 +1,104 @@
+{% extends 'main.html' %}
+{% load social_share %}
+
+
+{% block content %}
+
+<div align="center" class="card-deck">
+  <div align="center" class="card; rounded" style="background-image: url('https://i.ibb.co/jJgnKZW/plant-card-2.jpg');background-size: cover; width: 800px; margin-left: 30px; margin-right: 20px; border-color: darkslateblue">
+<div class="card-body">
+    <h4 align="center" style="padding: 10px; color: navajowhite">
+{{ cause.title }}
+</h4>
+         {% for tag in cause_tags %}
+                <button class=" btn btn-group-sm" style="background-color: darkslategrey; color: floralwhite; padding: 0.5px; margin: 5px ">{{ tag.caption }}</button>
+            {% endfor %}
+<p class="lead" style="color: floralwhite; margin: 10px">{{ cause.description }}</p>
+        <button class="btn btn-sm" style="background-color: darkslategrey; padding-left: 15px; padding-right: 15px; margin: 5px "><a style="color: floralwhite; text-decoration: none" href="{{ cause.location }}" target="_blank">Location &#127758;</a></button>
+        {% if user.is_authenticated %}
+          {% if following %}
+              <p style="color: floralwhite">You are already following this cause. </p>
+        {% else %}
+       <button class="btn btn-sm" style="background-color: darkslategrey; padding-left: 15px; padding-right: 15px; margin: 5px"> <a style="color: floralwhite; text-decoration: none; font-size: large" href="{% url 'follow-cause-conf' cause.id %}">Follow</a></button>
+        {% endif %}
+        {% else %}
+        <p style="color: floralwhite">To Follow this Cause, please <a style="text-decoration: none;" href="{% url 'login-page' %}"> Login </a> </p>
+        {% endif %}
+
+    <br><br/>
+
+<form action="{% url 'like-cause' cause.id %}" method="POST">
+    {% csrf_token %}
+{% if user.is_authenticated %}
+    {% if liked %}
+    <button class="btn btn-sm" style="background-color: darkslategrey; color: floralwhite; padding-left: 15px; padding-right: 15px; margin: 5px" type="submit" name="cause_like_id" value="{{ cause.id }}">
+        Unlike &#128148; </button>
+    {% else %}
+    <button class="btn btn-sm" style="background-color: darkslategrey; color: floralwhite; padding-left: 15px; padding-right: 15px; margin: 5px" type="submit" name="cause_like_id" value="{{ cause.id }}">
+        Like &#x1F49C; </button>
+    {% endif %}
+{% else %}
+<small style="color:antiquewhite;">You need to be logged in to like this cause.</small>
+{% endif %}
+
+{% if cause.total_cause_likes %}
+    <h8 style="color: floralwhite"> {{ total_likes }} likes </h8>
+{% else %}
+<p>Be the first to like this cause.</p>
+{% endif %}
+    </form>
+<button class="btn btn-sm" style="background-color: darkslategrey; padding-left: 15px; padding-right: 15px; margin: 5px"> <a style="color: floralwhite; text-decoration: none; font-size: large" href="{% post_to_facebook object_or_url %}"></a></button>
+ </div>
+  </div>
+<br>
+     <section>
+    <h3 align="center" style="color: darkslategrey; margin-bottom: 20px">Events related to this Cause</h3>
+     <div class="d-flex flex-row bd-highlight mb-3">
+     {% if not cause.event_set.all %}
+     <p style="color: darkslategrey; margin-left: 550px">You will be the first one to create an event related to this cause!</p>
+     {% else %}
+        {% for event in cause.event_set.all %}
+            <div class="flex-shrink-0 card" style="background-image: url('https://i.ibb.co/jJgnKZW/plant-card-2.jpg'); background-size: cover; width: 200px; margin-left: 30px; margin-right: 15px; border-color: darkslateblue" >
+
+            <a style="padding: 20px; color: floralwhite; text-decoration: none; font-size: larger" href="{% url 'event-details' event.id %}">{{ event.title }}</a>
+
+            </div>
+        {% endfor %}
+     {% endif %}
+    </div>
+    <div>
+
+    <div align="center">
+        {% if user.is_authenticated and user in cause.followers.all %}
+    <a class="btn btn-sm" style="background-color: darkolivegreen; color: floralwhite; padding-right: 40px; padding-left: 40px; margin: 15px; font-size: large" href="{% url 'create-event' cause.id %}">Create Event</a>
+        {% else %}
+        <p style="font-size: large">To Create an Event, please <a href="{% url 'login-page' %}"> Login </a> and Follow the Cause. </p>
+    {% endif %}
+ </div>
+
+{#    <img class="card-img-top" src="{{ cause.image.url }}" alt="cause_image">#}
+
+    <br>
+        <section>
+ <div>
+ <h3 align="center" style="color: darkslategrey">{{ cause.followers.count }} Cause Followers</h3>
+ <div class="d-flex flex-row bd-highlight mb-3">
+        {% for user in cause.followers.all %}
+            <div class="flex-shrink-0 card" style="background-image: url('https://i.ibb.co/jJgnKZW/plant-card-2.jpg');background-size: cover; width: 200px; margin-left: 30px; margin-right: 15px; border-color: darkslategrey" >
+            <a href="{% url 'user-profile-page' user.id%}">
+                <div>
+                    <div>
+                        <img src="{{user.avatar.url}}" class="rounded-circle" alt="user_avatar" width="100%" height="90vh" style= "object-fit: scale-down; padding-top: 10px"/>
+                        <a style="text-decoration: none; color: floralwhite; padding-left: 50px" href="{% url 'user-profile-page' user.id %}">{{ user.name }}</a>
+                    </div>
+                </div>
+            </a>
+            </div>
+        {% endfor %}
+
+    </div>
+        </section>
+
+
+
+{% endblock content %}
