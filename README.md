@@ -1,6 +1,70 @@
 # new-varna-project
 Your part in improving the city environment
 
+Screenshots from project:
+
+https://ibb.co/QmyRV0W
+https://ibb.co/sHqdDxS
+https://ibb.co/6sPzY6D
+https://ibb.co/bg0BqCg
+https://ibb.co/M8cH2pt
+https://ibb.co/TWqvCsQ
+https://ibb.co/mzZPzCP
+https://ibb.co/jZkqx3H
+https://ibb.co/tQTpRtt
+https://ibb.co/QFqdYQT
+https://ibb.co/0XZvsnV
+https://ibb.co/CH9Lq3N
+https://ibb.co/t21xs38
+https://ibb.co/F4215q4
+https://ibb.co/7Jbtz0q
+https://ibb.co/bgSqRz2
+https://ibb.co/F3VHBcP
+https://ibb.co/QQLBKd9
+https://ibb.co/1mj4088
+https://ibb.co/bJ4c7Yj
+https://ibb.co/vXqyf65
+https://ibb.co/VmyLDTM
+https://ibb.co/7zyW8Z2
+https://ibb.co/xj8ZgDy
+https://ibb.co/JmHhM51
+https://ibb.co/JmHhM51
+https://ibb.co/YPBQ2B4
+https://ibb.co/fHqGtH2
+https://ibb.co/N2pT1Rx
+https://ibb.co/6bpRPWN
+https://ibb.co/6N8bJ6v
+https://ibb.co/sbcKPpR
+https://ibb.co/S3ngy0n
+https://ibb.co/PMdndd0
+https://ibb.co/Gdn9CWN
+https://ibb.co/r5M3j3L
+https://ibb.co/123TxzL
+https://ibb.co/123TxzL
+https://ibb.co/BGQkPjp
+https://ibb.co/pyMWqCG
+https://ibb.co/D4ph2Vc
+https://ibb.co/4PK5Zh1
+https://ibb.co/RSwdw9L
+https://ibb.co/5h6pXSP
+https://ibb.co/DzQD2qh
+https://ibb.co/86g8jLp
+https://ibb.co/s2HWkPf
+https://ibb.co/pWSMLmD
+https://ibb.co/3ss494w
+https://ibb.co/HtCzbFv
+https://ibb.co/TB5RM81
+https://ibb.co/687bsBy
+https://ibb.co/pWTvzDZ
+https://ibb.co/vPnVrGC
+https://ibb.co/FghLZ5S
+https://ibb.co/4JjJW8y
+https://ibb.co/v3f3NDG
+https://ibb.co/m6VL96Q
+https://ibb.co/K0cwttV
+https://ibb.co/mGZ11j1
+https://ibb.co/FzmvFgJ
+
 Experience for unregistered / unlogged user:
 1. Home Page. The user has access to the New Events, New Causes and newly registered users cards. The Home page is visually divided to 3 sections by the jumbotron banner which is containing the website logo. 
 In the navbar menu the user can select  Suggest a cause, All Causes, All Events, About and Login sections. Also, they can search for a cause/ event by writing its title or a keyword.
