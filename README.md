@@ -162,3 +162,4 @@ Delete account:
 9. My Dashboard: The User can access the causes they are following + the events they are registered for. If the user has created the event, they’d have the ability to edit it.
 
 10. Admin area
+11. Share to social media button
